@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace No._3_homework1
 {
-    public interface shape
+    public interface Shape
     {
         void judge();
         void area();
     }
-    class Rectangle:shape
+    class Rectangle:Shape
     {
         public int length { get; set; }
         public int width  { get; set; }
@@ -33,7 +33,7 @@ namespace No._3_homework1
         }
 
     }
-    class Square:Rectangle,shape
+    class Square:Rectangle,Shape
     {
         new public void judge()
         {
@@ -48,7 +48,7 @@ namespace No._3_homework1
             }
         }
     }
-    class Triangle:shape
+    class Triangle:Shape
     {
         public double side1 { get; set; }
         public double side2 { get; set; }

@@ -30,7 +30,7 @@ namespace EventExample
         }
         public void Start(int x, int y,int z)
         {
-            Console.WriteLine("开始计时，初始时间为：" +x+ ":"+y+":"+z);
+            Console.WriteLine("开始计时， 初始时间为：" +x+ ":"+y+":"+z);
             
             Clock args = new Clock()
             {

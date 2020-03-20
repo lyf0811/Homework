@@ -10,12 +10,7 @@ namespace EventExample
 
     //声明一个委托类型，定义事件处理函数的格式 
     public delegate void Tick(object sender,Clock args);
-    public class Clock1
-    {
-        public int hour { get; set; }
-        public int minute { get; set; }
-        public int second { get; set; }
-    }
+
     public class Clock
     {
         public int hour { get; set; }

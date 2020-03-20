@@ -168,34 +168,93 @@ namespace NO._5_homework1
             }
         }
     }
-    public class UI
-    {
-        OrderService a = new OrderService();
 
-        int n = 0, m = 0;
-        string s = Console.ReadLine();
-        string x = Console.ReadLine();
-        a.addorder(n, m, s, x);
-
-    }
     class Program
     {
         static void Main(string[] args)
         {
+        start: Console.WriteLine("现存订单为");
             OrderService a = new OrderService();
             a.addorder(123, 1000000, "asdd", "sdw23e", "ssddfd", "dfwerwettg", "fwefrtt");
-            a.addorder(124, 10000, "asdd", "sdw32e", "12ed");
-            a.addorder(125, 100000, "as346d", "sdw23e", "wrttr");
+            a.addorder(124, 10000, "asdd", "sdw32e", "12ed","SDFERG");
+            a.addorder(125, 100000, "as346d", "sdw23e", "wrttr","SDF");
             a.addorder(123, 1000, "as235dd", "sdw4567e", "sddd", "drgdtg");
-            a.addorder(126, 1000000, "asd767d", "sdw45e", "asdsd");
+            a.addorder(126, 1000000, "asd767d", "sdw45e", "asdsd","SDFRG");
 
+            for(int i=0;i<a.orderlist.Count;i++)
+            {
+                Console.WriteLine(a.orderlist[i]);
+                for(int m=0;m<a.orderlist[i].orderitem.Length;m++)
+                {
+                    Console.WriteLine(a.orderlist[i].orderitem[m]);
+                }
+            }
 
+           
+            Console.WriteLine("请选择所要做的操作： 1.增加订单  2.删除订单  3.修改订单  4.查询订单");
+            string s = Console.ReadLine();
+            int x = Int32.Parse(s);
+            if (x==1)
+            {
+                Console.WriteLine("请输入要增加的订单号");
+                string B = Console.ReadLine();
+                int b = Int32.Parse(B);
+                Console.WriteLine("请输入要增加的商品名");
+                string D = Console.ReadLine();
+               
+                Console.WriteLine("请输入要增加的客户名");
+                string E = Console.ReadLine();
+               
+                Console.WriteLine("请输入要增加的订单总金额");
+                string C = Console.ReadLine();
+                int c = Int32.Parse(C);
+                Console.WriteLine("请输入要增加的订单明细数");
+                string F = Console.ReadLine();
+                int f = Int32.Parse(F);
+                Console.WriteLine("请依次输入要增加的订单明细");
+                string[] information = new string[10];
+                for (int i=0;i<f;i++)
+                {
+                    string g = Console.ReadLine();
+                    information[i] = g;
+                }
+                a.addorder(b, c, D, E, information);
+            }
+            else if (x == 2)
+            {
+                Console.WriteLine("请输入要删除的订单号");
+                string B = Console.ReadLine();
+                int b = Int32.Parse(B);
+                a.deleteorder(b);
+            }
+            else if (x == 3)
+            {
+                Console.WriteLine("请选择要修改第几条订单号");
+                string M = Console.ReadLine();
+                int m = Int32.Parse(M);
+                Console.WriteLine("请输入要修改的订单号");
+                string B = Console.ReadLine();
+                int b = Int32.Parse(B);
+                Console.WriteLine("请输入要修改的商品名");
+                string D = Console.ReadLine();
 
-            a.orderlist.ForEach(p => Console.WriteLine(p));
-            ; Console.WriteLine(a.orderlist[1].orderitem[0]);
-            Console.WriteLine(a.orderlist[1].orderitem[1]);
-            Console.WriteLine(a.orderlist[1].orderitem[2]);
-            a.searchorder(1);
+                Console.WriteLine("请输入要修改的客户名");
+                string E = Console.ReadLine();
+
+                Console.WriteLine("请输入要修改的订单总金额");
+                string C = Console.ReadLine();
+                int c = Int32.Parse(C);
+                a.modifyorder(m, b, c, D, E);
+            }
+            else if (x == 4)
+            {
+                Console.WriteLine("请输入查询关键字:1.订单号  2.商品名  3.客户名");
+                string B = Console.ReadLine();
+                int b = Int32.Parse(B);
+                if (b == 1) a.searchorder(0);
+                else if (b == 2) a.searchorder(1);
+                else if (b == 3) a.searchorder(2);
+            }
             Console.ReadKey();
 
         }

@@ -52,7 +52,7 @@ namespace NO._5_homework1.Tests
         public void searchorderTest()
         {
             int funcnum = 2;
-            a.searchorder(2);
+            a.searchorder(funcnum);
 
         }
 

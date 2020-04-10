@@ -35,7 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.funcnumbox = new System.Windows.Forms.ComboBox();
             this.searchbox = new System.Windows.Forms.TextBox();
-            this.loadoutbutton = new System.Windows.Forms.Button();
+            this.savefiletbutton = new System.Windows.Forms.Button();
             this.deletebutton = new System.Windows.Forms.Button();
             this.searchbutton = new System.Windows.Forms.Button();
             this.loadinbutton = new System.Windows.Forms.Button();
@@ -43,27 +43,28 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.modifyButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.itemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderbinding = new System.Windows.Forms.BindingSource(this.components);
             this.ordernumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderamountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goodsnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderbinding = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.itemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.orderitemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.orderitemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderitemBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderbinding)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.orderbinding)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource2)).BeginInit();
@@ -87,7 +88,7 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.funcnumbox);
             this.panel1.Controls.Add(this.searchbox);
-            this.panel1.Controls.Add(this.loadoutbutton);
+            this.panel1.Controls.Add(this.savefiletbutton);
             this.panel1.Controls.Add(this.deletebutton);
             this.panel1.Controls.Add(this.searchbutton);
             this.panel1.Controls.Add(this.loadinbutton);
@@ -144,15 +145,16 @@
             this.searchbox.Size = new System.Drawing.Size(229, 25);
             this.searchbox.TabIndex = 7;
             // 
-            // loadoutbutton
+            // savefiletbutton
             // 
-            this.loadoutbutton.CausesValidation = false;
-            this.loadoutbutton.Location = new System.Drawing.Point(538, 21);
-            this.loadoutbutton.Name = "loadoutbutton";
-            this.loadoutbutton.Size = new System.Drawing.Size(85, 36);
-            this.loadoutbutton.TabIndex = 6;
-            this.loadoutbutton.Text = "导出订单";
-            this.loadoutbutton.UseVisualStyleBackColor = true;
+            this.savefiletbutton.CausesValidation = false;
+            this.savefiletbutton.Location = new System.Drawing.Point(538, 21);
+            this.savefiletbutton.Name = "savefiletbutton";
+            this.savefiletbutton.Size = new System.Drawing.Size(85, 36);
+            this.savefiletbutton.TabIndex = 6;
+            this.savefiletbutton.Text = "导出订单";
+            this.savefiletbutton.UseVisualStyleBackColor = true;
+            this.savefiletbutton.Click += new System.EventHandler(this.savefiletbutton_Click);
             // 
             // deletebutton
             // 
@@ -186,6 +188,7 @@
             this.loadinbutton.TabIndex = 3;
             this.loadinbutton.Text = "导入订单";
             this.loadinbutton.UseVisualStyleBackColor = true;
+            this.loadinbutton.Click += new System.EventHandler(this.loadinbutton_Click);
             // 
             // panel5
             // 
@@ -235,6 +238,43 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // ordernumDataGridViewTextBoxColumn
+            // 
+            this.ordernumDataGridViewTextBoxColumn.DataPropertyName = "ordernum";
+            this.ordernumDataGridViewTextBoxColumn.HeaderText = "ordernum";
+            this.ordernumDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ordernumDataGridViewTextBoxColumn.Name = "ordernumDataGridViewTextBoxColumn";
+            this.ordernumDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // orderamountDataGridViewTextBoxColumn
+            // 
+            this.orderamountDataGridViewTextBoxColumn.DataPropertyName = "orderamount";
+            this.orderamountDataGridViewTextBoxColumn.HeaderText = "orderamount";
+            this.orderamountDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderamountDataGridViewTextBoxColumn.Name = "orderamountDataGridViewTextBoxColumn";
+            this.orderamountDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // goodsnameDataGridViewTextBoxColumn
+            // 
+            this.goodsnameDataGridViewTextBoxColumn.DataPropertyName = "goodsname";
+            this.goodsnameDataGridViewTextBoxColumn.HeaderText = "goodsname";
+            this.goodsnameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.goodsnameDataGridViewTextBoxColumn.Name = "goodsnameDataGridViewTextBoxColumn";
+            this.goodsnameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // customerDataGridViewTextBoxColumn
+            // 
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "customer";
+            this.customerDataGridViewTextBoxColumn.HeaderText = "customer";
+            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
+            this.customerDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // orderbinding
+            // 
+            this.orderbinding.DataSource = typeof(NO._5_homework1.Order);
+            this.orderbinding.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
+            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -275,6 +315,14 @@
             this.dataGridView2.Size = new System.Drawing.Size(313, 361);
             this.dataGridView2.TabIndex = 0;
             // 
+            // itemDataGridViewTextBoxColumn
+            // 
+            this.itemDataGridViewTextBoxColumn.DataPropertyName = "item";
+            this.itemDataGridViewTextBoxColumn.HeaderText = "item";
+            this.itemDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
+            this.itemDataGridViewTextBoxColumn.Width = 125;
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(548, 0);
@@ -291,51 +339,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(548, 364);
             this.panel4.TabIndex = 0;
-            // 
-            // itemDataGridViewTextBoxColumn
-            // 
-            this.itemDataGridViewTextBoxColumn.DataPropertyName = "item";
-            this.itemDataGridViewTextBoxColumn.HeaderText = "item";
-            this.itemDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.itemDataGridViewTextBoxColumn.Name = "itemDataGridViewTextBoxColumn";
-            this.itemDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // orderbinding
-            // 
-            this.orderbinding.DataSource = typeof(NO._5_homework1.Order);
-            this.orderbinding.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
-            // 
-            // ordernumDataGridViewTextBoxColumn
-            // 
-            this.ordernumDataGridViewTextBoxColumn.DataPropertyName = "ordernum";
-            this.ordernumDataGridViewTextBoxColumn.HeaderText = "ordernum";
-            this.ordernumDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.ordernumDataGridViewTextBoxColumn.Name = "ordernumDataGridViewTextBoxColumn";
-            this.ordernumDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // orderamountDataGridViewTextBoxColumn
-            // 
-            this.orderamountDataGridViewTextBoxColumn.DataPropertyName = "orderamount";
-            this.orderamountDataGridViewTextBoxColumn.HeaderText = "orderamount";
-            this.orderamountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderamountDataGridViewTextBoxColumn.Name = "orderamountDataGridViewTextBoxColumn";
-            this.orderamountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // goodsnameDataGridViewTextBoxColumn
-            // 
-            this.goodsnameDataGridViewTextBoxColumn.DataPropertyName = "goodsname";
-            this.goodsnameDataGridViewTextBoxColumn.HeaderText = "goodsname";
-            this.goodsnameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.goodsnameDataGridViewTextBoxColumn.Name = "goodsnameDataGridViewTextBoxColumn";
-            this.goodsnameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // customerDataGridViewTextBoxColumn
-            // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "customer";
-            this.customerDataGridViewTextBoxColumn.HeaderText = "customer";
-            this.customerDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
-            this.customerDataGridViewTextBoxColumn.Width = 125;
             // 
             // orderitemBindingSource1
             // 
@@ -367,11 +370,11 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderbinding)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.orderbinding)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderitemBindingSource2)).EndInit();
@@ -396,7 +399,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox funcnumbox;
         private System.Windows.Forms.TextBox searchbox;
-        private System.Windows.Forms.Button loadoutbutton;
+        private System.Windows.Forms.Button savefiletbutton;
         private System.Windows.Forms.Button deletebutton;
         private System.Windows.Forms.Button searchbutton;
         private System.Windows.Forms.Button loadinbutton;
@@ -409,6 +412,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemDataGridViewTextBoxColumn;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

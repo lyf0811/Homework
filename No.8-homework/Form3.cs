@@ -45,7 +45,7 @@ namespace No._8_homework
             }
             order = new Order(ordernum, orderamount, goodsnamebox.Text, customerbox.Text, orderitem1);
             this.DialogResult = DialogResult.OK;
-            MessageBox.Show("添加成功");
+          
             this.Close();
         }
     }

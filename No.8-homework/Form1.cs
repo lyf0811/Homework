@@ -1,4 +1,9 @@
 ﻿using NO._5_homework1;
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +38,7 @@ namespace No._8_homework
             orderbinding.DataSource = a.orderlist;
             MessageBox.Show("欢迎使用该订单管理系统。                                                                                                     " +
                 "注1：我将不为订单详细信息(orderitem)分配各种详细的意义与值，而是直接插入一条条注释，使用字符串将属性与值直接连接，方便各个订单插入不同的属性。                           " +
-                "注2：删除订单功能为选中所要删除的条目，点击一下删除订单即可。");
+                "注2：删除订单功能为选中所要删除的条目，点击一下删除订单即可,导入导出功能待完善");
 
 
         }
@@ -48,6 +53,7 @@ namespace No._8_homework
                 orderbinding.Add(f2.order);
                 
             }
+            MessageBox.Show("添加成功");
 
         }
 
@@ -58,6 +64,20 @@ namespace No._8_homework
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow dr in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.Remove(dr);
+
+            }
+            Form3 f2 = new Form3();
+            f2.ShowDialog();
+            if (f2.DialogResult == DialogResult.OK)
+            {
+                List<OrderItem> orderitem = new List<OrderItem>();
+                orderbinding.Add(f2.order);
+
+            }
+            MessageBox.Show("修改成功");
 
         }
 
@@ -131,6 +151,129 @@ namespace No._8_homework
         private void textbutton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void savefiletbutton_Click(object sender, EventArgs e)
+        {
+            /* if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+             {
+                 dataGridView1.SelectAll.saveFileDialog1(saveFileDialog1.FileName);
+             }*/
+            string filename = "导出文件";
+            char strSplit = ',';
+            DataTableToTxt(dataGridView1, filename, strSplit);
+
+        }
+
+
+
+
+
+
+
+        public static DataTable TxtToDataTable(string strFileName, char strSplit, ref string strErrorMessage)
+        {
+            DataTable dtReturn = new DataTable();
+
+            try
+            {
+                string[] strFileTexts = File.ReadAllLines(strFileName, System.Text.Encoding.UTF8);
+
+                if (strFileTexts.Length == 0) // 如果没有数据
+                {
+                    strErrorMessage = "文件中没有数据！";
+                    return null;
+                }
+
+                string[] strLineTexts = strFileTexts[0].Split(strSplit);
+                if (strLineTexts.Length == 0)
+                {
+                    strErrorMessage = "文件中数据格式不正确！";
+                    return null;
+                }
+
+
+                for (int i = 0; i < strLineTexts.Length; i++)
+                {
+                    dtReturn.Columns.Add("Columns" + i.ToString());
+                }
+
+
+
+                for (int i = 0; i < strFileTexts.Length; i++)
+                {
+                    strLineTexts = strFileTexts[i].Split(strSplit);
+                    DataRow dr = dtReturn.NewRow();
+                    for (int j = 0; j < strLineTexts.Length; j++)
+                    {
+                        dr[j] = strLineTexts[j].ToString();
+                    }
+                    dtReturn.Rows.Add(dr);
+                }
+            }
+            catch (Exception ex)
+            {
+                strErrorMessage = "读入数据出错！" + ex.Message;
+
+                return null;
+            }
+
+            return dtReturn;
+        }
+
+
+
+
+
+
+
+
+
+
+
+        public static bool DataTableToTxt(DataGridView gridview, string strFileName, char strSplit)
+        {
+            if (gridview == null || gridview.Rows.Count == 0)
+                return false;
+
+            FileStream fileStream = new FileStream(strFileName, FileMode.OpenOrCreate);
+            StreamWriter streamWriter = new StreamWriter(fileStream, System.Text.Encoding.UTF8);
+
+            StringBuilder strBuilder = new StringBuilder();
+
+            try
+            {
+                for (int i = 0; i < gridview.Rows.Count; i++)
+                {
+                    strBuilder = new StringBuilder();
+                    for (int j = 0; j < gridview.Columns.Count; j++)
+                    {
+                        strBuilder.Append(gridview.Rows[i].Cells[j].Value.ToString() + strSplit);
+                    }
+                    strBuilder.Remove(strBuilder.Length - 1, 1); // 将最后添加的一个strSplit删除掉
+                    streamWriter.WriteLine(strBuilder.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                string strErrorMessage = ex.Message;
+                return false;
+            }
+            finally
+            {
+                streamWriter.Close();
+                fileStream.Close();
+            }
+
+            return true;
+        }
+
+        private void loadinbutton_Click(object sender, EventArgs e)
+        {
+
+            DataTable dtb1;
+            string err = "";
+            dtb1 = TxtToDataTable("Test.txt", ',', ref err);
         }
     }
 

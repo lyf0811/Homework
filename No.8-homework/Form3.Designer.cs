@@ -55,7 +55,7 @@
             this.addbutton.Name = "addbutton";
             this.addbutton.Size = new System.Drawing.Size(86, 48);
             this.addbutton.TabIndex = 1;
-            this.addbutton.Text = "添加";
+            this.addbutton.Text = "确定";
             this.addbutton.UseVisualStyleBackColor = true;
             this.addbutton.Click += new System.EventHandler(this.button1_Click);
             // 

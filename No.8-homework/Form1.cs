@@ -24,20 +24,31 @@ namespace No._8_homework
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            a.addorder(123, 1000000, "asdd", "sdw23e", "ssddfd", "dfwerwettg", "fwefrtt");
-            a.addorder(124, 10000, "asdd", "sdw32e", "12ed", "SDFERG");
-            a.addorder(125, 100000, "as346d", "sdw23e", "wrttr", "SDF");
-            a.addorder(123, 1000, "as235dd", "sdw4567e", "sddd", "drgdtg");
-            a.addorder(126, 1000000, "asd767d", "sdw45e", "asdsd", "SDFRG");
-            a.addorder(128, 100000, "arrhd", "sd675e", "asdffggd", "S5486G");
+            a.addorder("123", "1000000", "asdd", "sdw23e", "ssddfd", "dfwerwettg", "fwefrtt");
+            a.addorder("124", "10000", "asdd", "sdw32e", "12ed", "SDFERG");
+            a.addorder("125", "100000", "as346d", "sdw23e", "wrttr", "SDF");
+            a.addorder("123", "1000", "as235dd", "sdw4567e", "sddd", "drgdtg");
+            a.addorder("126", "1000000", "asd767d", "sdw45e", "asdsd", "SDFRG");
+            a.addorder("128", "100000", "arrhd", "sd675e", "asdffggd", "S5486G");
             orderbinding.DataSource = a.orderlist;
+            MessageBox.Show("欢迎使用该订单管理系统。                                                                                                     " +
+                "注1：我将不为订单详细信息(orderitem)分配各种详细的意义与值，而是直接插入一条条注释，使用字符串将属性与值直接连接，方便各个订单插入不同的属性。                           " +
+                "注2：删除订单功能为选中所要删除的条目，点击一下删除订单即可。");
 
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Form2().ShowDialog();
+            Form3 f2 = new Form3();
+            f2.ShowDialog();
+            if (f2.DialogResult == DialogResult.OK)
+            {
+                List<OrderItem> orderitem = new List<OrderItem>();
+                orderbinding.Add(f2.order);
+                
+            }
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -87,8 +98,8 @@ namespace No._8_homework
             {
                 
                 string s = searchbox.Text;
-                int n = Int32.Parse(s);
-                orderbinding.DataSource = a.orderlist.Where(m => m.ordernum == n);
+                
+                orderbinding.DataSource = a.orderlist.Where(m => m.ordernum == s);
             }
             else if (funcnum == 2)
             {
@@ -115,6 +126,11 @@ namespace No._8_homework
               
             }
             MessageBox.Show("删除成功！");
+        }
+
+        private void textbutton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

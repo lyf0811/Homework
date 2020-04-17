@@ -40,7 +40,12 @@ namespace SimpleCrawler
                 }
 
                 if (current == null || count > 10) break;
-                Console.WriteLine("爬行" + current + "页面!");
+                if (!current.Contains("www.cnblogs.com/dstang2000/"))
+                {
+                    Console.WriteLine("爬行http://www.cnblogs.com/dstang2000/" + current + "页面!");
+                }
+                else
+                    { Console.WriteLine("爬行" + current + "页面!"); }
                 string html = DownLoad(current); // 下载
                 urls[current] = true;
                 count++;
@@ -80,7 +85,8 @@ namespace SimpleCrawler
                 if (strRef.Length == 0) continue;
                 //if (strRef.Contains(sturl))
                 //{
-                    if (urls[strRef] == null&& strRef.Contains("www.cnblogs.com/dstang2000/") && strRef.Contains(".html")) urls[strRef] = false;
+                //if(urls[strRef] == null) urls[strRef] = false;
+                if (urls[strRef] == null&& strRef.Contains("www.cnblogs.com/dstang2000/") && strRef.Contains(".html")) urls[strRef] = false;
                // }
             }
         }

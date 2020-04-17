@@ -49,12 +49,11 @@ namespace No._9_homeworkwindows
 
         private void button1_Click(object sender, EventArgs e)
         {
-            crawler.StartURL =textBox1.Text;
+            crawler.StartURL = textBox1.Text;
+            crawler.urls.Add(crawler.StartURL, false);//加入初始页面
             listBox1.Items.Clear();
             new Thread(crawler.Crawl).Start();
-
         }
-
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

@@ -13,7 +13,7 @@ namespace SimpleCrawler1
 {
     public class SimpleCrawler
     {
-        private Hashtable urls = new Hashtable();
+        public Hashtable urls = new Hashtable();
         private int count = 0;
         public int a { get; set; }
         public event Action<string> PageDownloaded;
@@ -48,6 +48,7 @@ namespace SimpleCrawler1
                 else
                     { Console.WriteLine("爬行" + current + "页面!"); }
                 string html = DownLoad(current); // 下载
+                PageDownloaded(current);
                 urls[current] = true;
                 count++;
                 Parse(html);//解析,并加入新的链接
@@ -64,6 +65,7 @@ namespace SimpleCrawler1
                 string html = webClient.DownloadString(url);
                 string fileName = count.ToString();
                 File.WriteAllText(fileName, html, Encoding.UTF8);
+                //PageDownloaded(html);
                 return html;
             }
             catch (Exception ex)
@@ -73,7 +75,7 @@ namespace SimpleCrawler1
             }
         }
 
-        private void Parse(string html)
+        public void Parse(string html)
         {
             string strRef = @"(href|HREF)[]*=[]*[""'][^""'#>]+[""']";
             MatchCollection matches = new Regex(strRef).Matches(html);

@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(571, 44);
+            this.button1.Location = new System.Drawing.Point(623, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 48);
             this.button1.TabIndex = 0;
@@ -45,9 +45,9 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 58);
+            this.textBox1.Location = new System.Drawing.Point(47, 58);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(363, 25);
+            this.textBox1.Size = new System.Drawing.Size(507, 25);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -55,9 +55,9 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(131, 155);
+            this.listBox1.Location = new System.Drawing.Point(47, 128);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(515, 244);
+            this.listBox1.Size = new System.Drawing.Size(651, 289);
             this.listBox1.TabIndex = 3;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 

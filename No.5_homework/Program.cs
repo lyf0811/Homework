@@ -207,7 +207,7 @@ namespace NO._5_homework1
                 string D = Console.ReadLine();
                
                 Console.WriteLine("请输入要增加的客户名");
-                string E = Console.ReadLine();
+                string M = Console.ReadLine();
                
                 Console.WriteLine("请输入要增加的订单总金额");
                 string C = Console.ReadLine();
@@ -222,7 +222,7 @@ namespace NO._5_homework1
                     string g = Console.ReadLine();
                     information[i] = g;
                 }
-                a.addorder(b, c, D, E, information);
+                a.addorder(b, c, D, M, information);
             }
             else if (x == 2)
             {
@@ -259,6 +259,7 @@ namespace NO._5_homework1
                 else if (b == 2) a.searchorder(1);
                 else if (b == 3) a.searchorder(2);
             }
+            goto start;
             Console.ReadKey();
 
         }

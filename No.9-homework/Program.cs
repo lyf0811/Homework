@@ -15,7 +15,6 @@ namespace SimpleCrawler1
     {
         public Hashtable urls = new Hashtable();
         private int count = 0;
-        public int a { get; set; }
         public event Action<string> PageDownloaded;
         public string StartURL { get; set; }
         static void Main(string[] args)

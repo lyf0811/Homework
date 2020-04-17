@@ -13,7 +13,7 @@ namespace ConsoleApplication16
         {
             while (true)
             {
-                string s = "";
+                string s = " ";
                 int a = 0, b = 0;
                 try
                 {

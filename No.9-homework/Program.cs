@@ -9,14 +9,15 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SimpleCrawler
+namespace SimpleCrawler1
 {
-    class SimpleCrawler
+    public class SimpleCrawler
     {
         private Hashtable urls = new Hashtable();
         private int count = 0;
         public int a { get; set; }
-        //private string sturl = "http://www.cnblogs.com/dstang2000/";
+        public event Action<string> PageDownloaded;
+        public string StartURL { get; set; }
         static void Main(string[] args)
         {
             SimpleCrawler myCrawler = new SimpleCrawler();
@@ -27,7 +28,7 @@ namespace SimpleCrawler
             Console.ReadKey();
         }
 
-        private void Crawl()
+        public void Crawl()
         {
             Console.WriteLine("开始爬行了.... ");
             while (true)
@@ -74,7 +75,6 @@ namespace SimpleCrawler
 
         private void Parse(string html)
         {
-           // string html1 = wc.DownloadString("http://www.cnblogs.com/dstang2000/";
             string strRef = @"(href|HREF)[]*=[]*[""'][^""'#>]+[""']";
             MatchCollection matches = new Regex(strRef).Matches(html);
             //Regex.Matches(sturl, "(href|HREF)[]*=[]*[""'][^""'#>]+[""']");new Regex(strRef).Matches(html);
@@ -83,8 +83,6 @@ namespace SimpleCrawler
                 strRef = match.Value.Substring(match.Value.IndexOf('=') + 1)
                           .Trim('"', '\"', '#', '>');
                 if (strRef.Length == 0) continue;
-                //if (strRef.Contains(sturl))
-                //{
                 //if(urls[strRef] == null) urls[strRef] = false;
                 if (urls[strRef] == null&& strRef.Contains("www.cnblogs.com/dstang2000/") && strRef.Contains(".html")) urls[strRef] = false;
                // }

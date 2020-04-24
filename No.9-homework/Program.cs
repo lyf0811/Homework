@@ -39,7 +39,7 @@ namespace SimpleCrawler1
                     current = url;
                 }
 
-                if (current == null || count > 10) break;
+                if (current == null || count > 100) break;
                 if (!current.Contains("www.cnblogs.com/dstang2000/"))
                 {
                     Console.WriteLine("爬行http://www.cnblogs.com/dstang2000/" + current + "页面!");

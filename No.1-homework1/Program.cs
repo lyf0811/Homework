@@ -20,7 +20,7 @@ namespace ConsoleApplication16
                     Console.Write("请输入第一个数字：");
                     s = Console.ReadLine();
                     a = Int32.Parse(s);
-                    Console.Write("请输入第二个数字：");
+                    Console.Write("请输入第二个数字： ");
                     s = Console.ReadLine();
                     b = Int32.Parse(s);
                     int result = 0;

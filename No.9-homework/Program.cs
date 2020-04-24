@@ -29,7 +29,7 @@ namespace SimpleCrawler1
 
         public void Crawl()
         {
-            Console.WriteLine("开始爬行了.... ");
+            Console.WriteLine("开始爬行了....  ");
             while (true)
             {
                 string current = null;

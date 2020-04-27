@@ -18,7 +18,8 @@ namespace CrawlerForm {
     //所有已下载和待下载URL，key是URL，value表示是否下载成功
     private Dictionary<string, bool> urls = new Dictionary<string, bool>();
 
-    //待下载队列
+        //待下载队列
+    public int count;
     private Queue<string> pending = new Queue<string>();
 
     //URL检测表达式，用于在HTML文本中查找URL
@@ -42,21 +43,25 @@ namespace CrawlerForm {
       urls.Clear();
       pending.Clear();
       pending.Enqueue(StartURL);
-      int count = 0;
+      //int count = 0;
             while (count < MaxPage) {
+               
                 try
                 {
                     if (pending.Count != 0)
                     {
+                        
                         string url = pending.Dequeue();
-                        Task task = Task.Run(() => getpage(url));
-
                         count++;
+                        Task task = Task.Run(() => getpage(url));
+                         //lock (this) { count++; }
+                       
                     }
                 }
                 catch
                 {
                 }
+                
             }
    
       CrawlerStopped(this);
@@ -70,7 +75,7 @@ namespace CrawlerForm {
                     urls[url] = true;
                     PageDownloaded(this, url, "success");
                     Parse(html, url);//解析,并加入新的链接
-                    //count++;
+               
                 }
                 catch (Exception ex)
                 {

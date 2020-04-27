@@ -33,7 +33,7 @@ namespace CrawlerForm {
     }
 
     private void Crawler_PageDownloaded(Crawler crawler, string url, string info) {
-      var pageInfo = new { Index = resultBindingSource.Count + 1, URL = url, Status = info };
+      var pageInfo = new { Index = resultBindingSource.Count+1, URL = url, Status = info };
       Action action = () => { resultBindingSource.Add(pageInfo); };
       if (this.InvokeRequired) {
         this.Invoke(action);
@@ -62,5 +62,14 @@ namespace CrawlerForm {
 
     }
 
-  }
+        private void dgvResult_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+    }
 }
